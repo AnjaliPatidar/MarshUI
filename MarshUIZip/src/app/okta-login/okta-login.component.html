@@ -1,0 +1,13 @@
+<p>okta-login works!</p>
+<button (click)="login()">Login with Okta</button>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+    <ng-container *ngIf="(isAuthenticated$ | async) === false; else signout">
+      <button (click)="signIn()">Sign in</button>
+    </ng-container>
+  
+    <ng-template #signout>
+      <button (click)="signOut()">Sign out</button>
+    </ng-template>
+</div>

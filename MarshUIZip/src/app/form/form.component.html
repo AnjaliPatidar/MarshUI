@@ -1,0 +1,43 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+    <div class="row container ml-30">
+        <div class="col-md-6">
+            <!-- Start Drop Zone -->
+            <div class="drop-area position-relative">
+                <input #fileInput type="file" (change)="handleChange($event)" [accept]="allowedFileTypes"
+                    class="dragfilezone position-absolute" />
+
+                <p class="text-center">
+                    Drag & Drop <br />
+                    -----------------or-----------------
+                </p>
+
+                <div class="text-center">
+                    <button type="button" (click)="fileInput.click()">
+                        Browse File
+                    </button>
+                </div>
+            </div>
+            <!-- End Drop Zone -->
+        </div>
+
+        <div class="col-md-6">
+            <label for="group">Select Group:</label>
+            <select formControlName="group" style="width: 100%;">
+                <option *ngFor="let group of groups" [value]="group">{{ group }}</option>
+            </select>
+            <div class="error-msg" *ngIf="myForm.controls['group'].invalid && myForm.controls['group'].touched">
+                Group selection is required.
+            </div>
+            <!-- Start Preview Image -->
+            <div *ngIf="fileUrl && uploadFile" class="mt-15">
+                <span class="mb-6"><b>Upload file: </b> <span class="text-success"> {{ uploadFile.name }}</span></span>
+            </div>
+            <!-- End Preview Image -->
+        </div>
+    </div>
+
+    <div class="ml-30">
+        <button type="button" class="btn btn-info text-primary" (click)="handleRemovesFile()">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
