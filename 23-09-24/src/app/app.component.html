@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="theme-color d-flex justify-content-between align-items-center">
+  <span class="d-flex align-items-center">
+  </span>
+  <button mat-button [mat-menu-trigger-for]="menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+</mat-toolbar>
+
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item routerLink="/home">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+  <button mat-menu-item routerLink="/login" *ngIf="!isAuthenticated">
+    <mat-icon>power_settings_new</mat-icon>
+    Login
+  </button>
+  <button mat-menu-item *ngIf="isAuthenticated" (click)="logout()">
+    <mat-icon>exit_to_app</mat-icon>
+    Logout
+  </button>
+</mat-menu>
+<router-outlet></router-outlet>
